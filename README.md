@@ -7,7 +7,7 @@ Ecommerce Insights is a backend analytics system built with Node.js, TypeScript,
 ## Setup Instructions
 
 1. Clone the project:
-   git clone https://github.com/your-username/ecommerce-insights.git
+   git clone https://github.com/Althaf0511/ecommerce-insights.git
    cd ecommerce-insights
 
 2. Install dependencies:
@@ -16,9 +16,7 @@ Ecommerce Insights is a backend analytics system built with Node.js, TypeScript,
 3. Create a .env file at the root of the project:
    cp .env.example .env
 
-4. Edit the `.env` file with your MongoDB connection string:
-   MONGO_URI=mongodb://localhost:27017/ecommerce
-   PORT=4000
+4. Edit the `.env` file with your MongoDB connection string
 
 ---
 
@@ -37,7 +35,7 @@ GraphQL playground will be available at:
 
 ## Data Import Guidelines
 
-When importing JSON data for `customers`, `products`, or `orders`, follow these strict guidelines:
+When importing JSON data for `customers`, `products`, or `orders`, follow these guidelines:
 
 1. All `_id` values **should be strings** (not ObjectIds or numbers).
 
@@ -97,23 +95,7 @@ src/
 
 ---
 
-## Example GraphQL Query
-
-query {
-  getCustomerSpending(customerId: "cust-001") {
-    customerId
-    totalSpent
-    averageOrderValue
-    lastOrderDate
-  }
-}
-
----
-
 ## Notes
 
 - Make sure MongoDB is running before starting the server.
-- The server does not support REST — only GraphQL endpoints.
-- Use the playground at /graphql to test queries.
-
 ---
