@@ -35,7 +35,7 @@ To run in production mode:
 
 GraphQL playground will be available at:
 
-   http://localhost:4000/graphql
+   http://localhost:3000/graphql
 
 ---
 
@@ -87,7 +87,7 @@ When importing JSON data for `customers`, `products`, or `orders`, follow these 
 These must be defined in your `.env` file:
 
    MONGO_URI=mongodb://localhost:27017/ecommerce  
-   PORT=4000 (optional, defaults to 4000)
+   PORT=3000 (optional, defaults to 3000)
 
 ---
 
