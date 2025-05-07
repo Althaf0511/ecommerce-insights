@@ -17,7 +17,7 @@ const placeOrder = async (
   { input }: { input: PlaceOrderInput }
 ): Promise<IOrder> => {
   const { customerId, products } = input;
-
+//
   const populatedProducts = await Promise.all(
     products.map(async ({ productId, quantity }) => {
       const product: IProduct | null = await Product.findById(productId);

@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema, Model } from 'mongoose';
+import mongoose, { Document, Schema, Model } from "mongoose";
 
 interface IOrderProduct {
   productId: string;
@@ -12,7 +12,7 @@ export interface IOrder extends Document {
   products: IOrderProduct[];
   totalAmount: number;
   orderDate: Date;
-  status: 'pending' | 'completed';
+  status: "pending" | "completed" | "canceled"; // Added "canceled" status
 }
 
 const orderSchema: Schema<IOrder> = new Schema({
@@ -27,7 +27,7 @@ const orderSchema: Schema<IOrder> = new Schema({
       productId: { type: String, required: true },
       quantity: { type: Number, required: true },
       priceAtPurchase: { type: Number, required: true },
-    }
+    },
   ],
   totalAmount: { type: Number, required: true },
   orderDate: {
@@ -37,13 +37,13 @@ const orderSchema: Schema<IOrder> = new Schema({
   },
   status: {
     type: String,
-    enum: ['pending', 'completed'],
-    default: 'pending',
-  }
+    enum: ["pending", "completed", "canceled"],
+    default: "pending",
+  },
 });
 
-//index for sorting/pagination
-orderSchema.index({ customerId: 1, orderDate: -1 });
+// Index for customerId, orderDate, and totalAmount for sorting and querying
+orderSchema.index({ customerId: 1, orderDate: -1, totalAmount: 1 });
 
-const Order: Model<IOrder> = mongoose.model<IOrder>('Order', orderSchema);
+const Order: Model<IOrder> = mongoose.model<IOrder>("Order", orderSchema);
 export default Order;

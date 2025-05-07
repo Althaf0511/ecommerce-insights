@@ -1,4 +1,10 @@
-import mongoose, { Document, Schema, Model } from 'mongoose';
+import mongoose, { Document, Schema, Model } from "mongoose";
+
+export enum Gender {
+  Female = "Female",
+  Male = "Male",
+  Other = "Other",
+}
 
 // Interface for the Customer
 export interface ICustomer extends Document {
@@ -7,7 +13,7 @@ export interface ICustomer extends Document {
   email: string;
   age: number;
   location: string;
-  gender: string;
+  gender: Gender;
 }
 
 const customerSchema: Schema<ICustomer> = new Schema({
@@ -16,8 +22,15 @@ const customerSchema: Schema<ICustomer> = new Schema({
   email: { type: String, required: true },
   age: { type: Number, required: true },
   location: { type: String, required: true },
-  gender: { type: String, required: true }
+  gender: {
+    type: String,
+    enum: Object.values(Gender),
+    required: true,
+  },
 });
 
-const Customer: Model<ICustomer> = mongoose.model<ICustomer>('Customer', customerSchema);
+const Customer: Model<ICustomer> = mongoose.model<ICustomer>(
+  "Customer",
+  customerSchema
+);
 export default Customer;

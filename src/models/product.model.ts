@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema, Model } from 'mongoose';
+import mongoose, { Document, Schema, Model } from "mongoose";
 
 export interface IProduct extends Document {
   _id: string;
@@ -13,8 +13,13 @@ const productSchema: Schema<IProduct> = new Schema({
   name: { type: String, required: true },
   category: { type: String, required: true },
   price: { type: Number, required: true },
-  stock: { type: Number, required: true }
+  stock: { type: Number, required: true },
 });
 
-const Product: Model<IProduct> = mongoose.model<IProduct>('Product', productSchema);
+// Index category for sorting and querying
+productSchema.index({ category: 1 });
+const Product: Model<IProduct> = mongoose.model<IProduct>(
+  "Product",
+  productSchema
+);
 export default Product;

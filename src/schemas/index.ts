@@ -1,9 +1,9 @@
-import { gql } from 'graphql-tag'
-import customerSpendingSchema from './customerSpending.schema';
-import topProductsSchema from './topProducts.schema';
-import analyticsSchema from './analytics.schema';
-import orderSchema from './order.schema';
-import customerOrdersSchema from './customerOrders.schema';
+import { gql } from "graphql-tag";
+import customerSpendingSchema from "./customerSpending.schema";
+import topProductsSchema from "./topProducts.schema";
+import analyticsSchema from "./analytics.schema";
+import orderSchema from "./order.schema";
+import customerOrdersSchema from "./customerOrders.schema";
 
 const baseTypeDefs = gql`
   type Query
@@ -16,7 +16,7 @@ const typeDefs = [
   topProductsSchema,
   orderSchema,
   analyticsSchema,
-  customerOrdersSchema
+  customerOrdersSchema,
 ];
 
 export default typeDefs;

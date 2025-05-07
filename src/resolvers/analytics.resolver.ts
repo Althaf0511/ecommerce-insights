@@ -1,5 +1,5 @@
-import { IResolvers } from '@graphql-tools/utils';
-import Order from '../models/order.model';
+import { IResolvers } from "@graphql-tools/utils";
+import Order from "../models/order.model";
 
 //Input argument types
 interface SalesAnalyticsArgs {
@@ -30,15 +30,15 @@ const analyticsResolver: IResolvers = {
         {
           $match: {
             orderDate: { $gte: start, $lte: end },
-            status: 'completed',
+            status: "completed",
           },
         },
         {
           $group: {
             _id: null,
-            totalRevenue: { $sum: '$totalAmount' },
+            totalRevenue: { $sum: "$totalAmount" },
             completedOrders: { $sum: 1 },
-            orderDate: { $max: '$orderDate' },
+            orderDate: { $max: "$orderDate" },
           },
         },
       ]);
@@ -47,25 +47,25 @@ const analyticsResolver: IResolvers = {
         {
           $match: {
             orderDate: { $gte: start, $lte: end },
-            status: 'completed',
+            status: "completed",
           },
         },
-        { $unwind: '$products' },
+        { $unwind: "$products" },
         {
           $lookup: {
-            from: 'products',
-            localField: 'products.productId',
-            foreignField: '_id',
-            as: 'product',
+            from: "products",
+            localField: "products.productId",
+            foreignField: "_id",
+            as: "product",
           },
         },
-        { $unwind: '$product' },
+        { $unwind: "$product" },
         {
           $group: {
-            _id: '$product.category',
+            _id: "$product.category",
             revenue: {
               $sum: {
-                $multiply: ['$products.quantity', '$products.priceAtPurchase'],
+                $multiply: ["$products.quantity", "$products.priceAtPurchase"],
               },
             },
           },
@@ -83,12 +83,12 @@ const analyticsResolver: IResolvers = {
       const { totalRevenue, completedOrders, orderDate } = salesData[0];
 
       return {
-        totalRevenue,
+        totalRevenue: parseFloat(totalRevenue.toFixed(2)),
         completedOrders,
         orderDate,
         categoryBreakdown: categoryBreakdown.map((item) => ({
           category: item._id,
-          revenue: item.revenue,
+          revenue: parseFloat(item.revenue.toFixed(2)),
         })),
       };
     },
