@@ -8,14 +8,14 @@ Ecommerce Insights is a backend analytics system built with Node.js, TypeScript,
 
 1. Clone the project:
 
-   git clone https://github.com/Althaf0511/ecommerce-insights.git  
-   cd ecommerce-insights
+   `git clone https://github.com/Althaf0511/ecommerce-insights.git`  
+   `cd ecommerce-insights`
 
 2. Install dependencies:
 
-   npm install
+   `npm install`
 
-3. Create a .env file at the root of the project:
+3. Create a `.env` file at the root of the project:
 
    cp .env.example .env
 
@@ -27,15 +27,15 @@ Ecommerce Insights is a backend analytics system built with Node.js, TypeScript,
 
 To start the server in development mode (auto-restarts with file changes):
 
-   npm run dev
+   `npm run dev`
 
 To run in production mode:
 
-   npm run start
+   `npm run start`
 
 GraphQL playground will be available at:
 
-   http://localhost:4000/graphql
+   `http://localhost:4000/graphql`
 
 ---
 
@@ -87,7 +87,7 @@ When importing JSON data for `customers`, `products`, or `orders`, follow these 
 These must be defined in your `.env` file:
 
    MONGO_URI=mongodb://localhost:27017/ecommerce  
-   PORT=4000 (optional, defaults to 4000)
+   PORT=4000 (optional, defaults to 8080)
 
 ---
 
