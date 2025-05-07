@@ -1,0 +1,105 @@
+# 1️⃣ Query: Get Customer Spending
+# Variables:-
+
+# {
+#   "customerId": "e7d22fe7-bee5-4507-bcb8-8b4b999dc9fd"
+# }
+
+query GetCustomerSpending($customerId: ID!) {
+  getCustomerSpending(customerId: $customerId) {
+    customerId
+    totalSpent
+    averageOrderValue
+    lastOrderDate
+  }
+}
+
+
+# 2️⃣ Query: Get Sales Analytics
+
+# Variables:-
+
+# {
+#   "startDate": "2024-01-10",
+#   "endDate": "2025-04-30"
+# }
+
+
+query GetSalesAnalytics($startDate: String!, $endDate: String!) {
+  getSalesAnalytics(startDate: $startDate, endDate: $endDate) {
+    totalRevenue
+    completedOrders
+    categoryBreakdown {
+      category
+      revenue
+    }
+  }
+}
+
+
+
+# 3️⃣ Query: Get Customer Orders with Pagination
+
+# Variables for testing:- 
+
+# {
+#   "customerId": "e7d22fe7-bee5-4507-bcb8-8b4b999dc9fd",
+#   "page": 1,
+#   "limit": 5
+# }
+
+query GetCustomerOrders($customerId: ID!, $page: Int!, $limit: Int!) {
+  getCustomerOrders(customerId: $customerId, page: $page, limit: $limit) {
+    _id
+    totalAmount
+    orderDate
+    status
+  }
+}
+
+
+# 4️⃣ Mutation: Place an Order
+#  Variables for testing:- 
+
+# {
+#   "input": {
+#     "customerId": "24fdbaef-00ec-4b1b-b8e3-9081e9e88c9c",
+#     "products": [
+#       {
+#         "productId": "77826add-203f-4e5e-8dc2-a01b5968a6af",
+#         "quantity": 2
+#       }
+#     ]
+#   }
+# }
+
+mutation PlaceOrder($input: PlaceOrderInput!) {
+  placeOrder(input: $input) {
+    _id
+    customerId
+    products {
+      productId
+      quantity
+      priceAtPurchase
+    }
+    totalAmount
+    orderDate
+    status
+  }
+}
+
+
+# 5️⃣ Query: Get Top Selling Products
+#  Variables for testing:- 
+
+# {
+#   "limit": 5
+# }
+
+query GetTopSellingProducts($limit: Int!) {
+  getTopSellingProducts(limit: $limit) {
+    productId
+    name
+    totalSold
+  }
+}
